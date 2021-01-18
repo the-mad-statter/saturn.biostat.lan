@@ -1,0 +1,4 @@
+#!/bin/bash
+#PBS -l nodes=1:sas
+cd my_sas_job
+sas my_sas_script.sas
