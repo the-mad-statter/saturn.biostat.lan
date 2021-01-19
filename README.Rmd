@@ -135,7 +135,7 @@ mail -s “My Subject” -a “my_sas_output.pdf” -c cc_1@wustl.edu,cc_2@wustl
     b. Semi-relatedly, it is recommended to avoid spaces in directory and files names.
         i. One option to avoid spaces is to substitute underscores.
 2. Be careful about transferring files between Windows machines and Unix machines to make sure the line endings are translated properly.
-    a. Windows uses carriage return and line feed ("\r\n") as a line ending, while Unix uses just line feed ("\n").
+    a. Windows uses carriage return and line feed ("\\r\\n") as a line ending, while Unix uses just line feed ("\\n").
     b. If you created, and potentially if you edited, either your TORQUE job script or your crontab file on a Windows machine use a command on Saturn called `dos2unix` to replace the problematic line endings.
         i. Issue the command `dos2unix file_with_windows_line_endings.ext`
         ii. Better yet, only create and edit such files on Saturn.

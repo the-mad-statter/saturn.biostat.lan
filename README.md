@@ -192,8 +192,8 @@ mail -s “My Subject” -a “my_sas_output.pdf” -c cc_1@wustl.edu,cc_2@wustl
         1.  One option to avoid spaces is to substitute underscores.
 2.  Be careful about transferring files between Windows machines and
     Unix machines to make sure the line endings are translated properly.
-    1.  Windows uses carriage return and line feed (“”) as a line
-        ending, while Unix uses just line feed (“”).
+    1.  Windows uses carriage return and line feed (“\\r\\n”) as a line
+        ending, while Unix uses just line feed (“\\n”).
     2.  If you created, and potentially if you edited, either your
         TORQUE job script or your crontab file on a Windows machine use
         a command on Saturn called `dos2unix` to replace the problematic
