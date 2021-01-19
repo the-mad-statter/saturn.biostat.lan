@@ -100,12 +100,14 @@ optionally, to share output via email.
     2.  Issue the command `mkdir my_sas_job` to make the directory
 4.  Navigate into the new directory.
     1.  Use the command `cd my_sas_job`
-5.  Upload your SAS script file to the “my\_sas\_job” directory using
-    your SFTP program.
+5.  Upload your SAS script file like
+    [my\_sas\_script.sas](my_sas_script.sas) to the “my\_sas\_job”
+    directory using your SFTP program.
 6.  Create the TORQUE job script file
     1.  Issue the command `nano my_job_script.pbs` in your SSH program
         to open a new text file in the nano editor and enter the code
-        below where:
+        copied below from [my\_job\_script.pbs](my_job_script.pbs)
+        where:
         1.  `#!/bin/bash` specifies this is code to be run in a [bash
             shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
         2.  `#PBS -l nodes=1:sas` tells TORQUE you want one node but
@@ -179,6 +181,26 @@ sas my_sas_script.sas
 ``` bash
 mail -s “My Subject” -a “my_sas_output.pdf” -c cc_1@wustl.edu,cc_2@wustl.edu -r ‘”Your Last Name, Your First Name” your_email@wustl.edu’ recipient_1@wustl.edu,recipient_2@wustl.edu < message.txt
 ```
+
+## Notes
+
+1.  Unlike SAS, most everything in Unix is case-sensitive.
+    1.  Be careful when typing commands. Whether a character is upper or
+        lower case **does** make a difference.
+    2.  Semi-relatedly, it is recommended to avoid spaces in directory
+        and files names.
+        1.  One option to avoid spaces is to substitute underscores.
+2.  Be careful about transferring files between Windows machines and
+    Unix machines to make sure the line endings are translated properly.
+    1.  Windows uses carriage return and line feed (“”) as a line
+        ending, while Unix uses just line feed (“”).
+    2.  If you created, and potentially if you edited, either your
+        TORQUE job script or your crontab file on a Windows machine use
+        a command on Saturn called `dos2unix` to replace the problematic
+        line endings.
+        1.  Issue the command
+            `dos2unix file_with_windows_line_endings.ext`
+        2.  Better yet, only create and edit such files on Saturn.
 
 ## About
 

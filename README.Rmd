@@ -72,9 +72,9 @@ The [Division of Biostatistics](https://biostatistics.wustl.edu/) at [Washington
     b.	Issue the command `mkdir my_sas_job` to make the directory
 4. Navigate into the new directory.
     a. Use the command `cd my_sas_job`
-5. Upload your SAS script file to the “my_sas_job” directory using your SFTP program.
+5. Upload your SAS script file like [my_sas_script.sas](my_sas_script.sas) to the “my_sas_job” directory using your SFTP program.
 6. Create the TORQUE job script file
-    a. Issue the command `nano my_job_script.pbs` in your SSH program to open a new text file in the nano editor and enter the code below where:
+    a. Issue the command `nano my_job_script.pbs` in your SSH program to open a new text file in the nano editor and enter the code copied below from [my_job_script.pbs](my_job_script.pbs) where:
         i. `#!/bin/bash` specifies this is code to be run in a [bash shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
         ii. `#PBS -l nodes=1:sas` tells TORQUE you want one node but more importantly that you want a node that has SAS installed (As of this writing only nodes [saturn2.biostat.lan](saturn2.biostat.lan) and [saturn7.biostat.lan](saturn7.biostat.lan) appear to have SAS installed and accept jobs from the default queue)
         iii. `cd my_sas_job` changes the working directory from your home root to your job directory
@@ -127,6 +127,18 @@ sas my_sas_script.sas
 ```bash
 mail -s “My Subject” -a “my_sas_output.pdf” -c cc_1@wustl.edu,cc_2@wustl.edu -r ‘”Your Last Name, Your First Name” your_email@wustl.edu’ recipient_1@wustl.edu,recipient_2@wustl.edu < message.txt
 ```
+
+## Notes
+
+1. Unlike SAS, most everything in Unix is case-sensitive.
+    a. Be careful when typing commands. Whether a character is upper or lower case **does** make a difference.
+    b. Semi-relatedly, it is recommended to avoid spaces in directory and files names.
+        i. One option to avoid spaces is to substitute underscores.
+2. Be careful about transferring files between Windows machines and Unix machines to make sure the line endings are translated properly.
+    a. Windows uses carriage return and line feed ("\r\n") as a line ending, while Unix uses just line feed ("\n").
+    b. If you created, and potentially if you edited, either your TORQUE job script or your crontab file on a Windows machine use a command on Saturn called `dos2unix` to replace the problematic line endings.
+        i. Issue the command `dos2unix file_with_windows_line_endings.ext`
+        ii. Better yet, only create and edit such files on Saturn.
 
 ## About
 
